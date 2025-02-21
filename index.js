@@ -67,6 +67,16 @@ function addCall() {
     document.getElementById('name').value = '';
     document.getElementById('number').value = '';
 }
+
+function searchCalls() {
+    const filter = document.getElementById('search').value.toLowerCase();
+    const callItems = document.getElementsByClassName('call-item');
+    
+    for (let item of callItems) {
+        const text = item.textContent.toLowerCase();
+        item.style.display = text.includes(filter) ? '' : 'none';
+    }
+}
   
 
 
