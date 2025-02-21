@@ -47,6 +47,26 @@
 //     console.log(a);
 //   })();
 //   console.log(a); //10
+
+function addCall() {
+    const name = document.getElementById('name').value;
+    const number = document.getElementById('number').value;
+    const callList = document.getElementById('callList');
+
+    if (name.trim() === '' || number.trim() === '') {
+        alert('Please enter both name and number');
+        return;
+    }
+
+    const timestamp = new Date().toLocaleString();
+    const callItem = document.createElement('div');
+    callItem.classList.add('call-item');
+    callItem.innerHTML = `<strong>${name}</strong> (${number})<br><small>${timestamp}</small>`;
+    
+    callList.prepend(callItem);
+    document.getElementById('name').value = '';
+    document.getElementById('number').value = '';
+}
   
 
 
