@@ -48,36 +48,42 @@
 //   })();
 //   console.log(a); //10
 
-function addCall() {
-    const name = document.getElementById('name').value;
-    const number = document.getElementById('number').value;
-    const callList = document.getElementById('callList');
+// function addCall() {
+//     const name = document.getElementById('name').value;
+//     const number = document.getElementById('number').value;
+//     const callList = document.getElementById('callList');
 
-    if (name.trim() === '' || number.trim() === '') {
-        alert('Please enter both name and number');
-        return;
-    }
+//     if (name.trim() === '' || number.trim() === '') {
+//         alert('Please enter both name and number');
+//         return;
+//     }
 
-    const timestamp = new Date().toLocaleString();
-    const callItem = document.createElement('div');
-    callItem.classList.add('call-item');
-    callItem.innerHTML = `<strong>${name}</strong> (${number})<br><small>${timestamp}</small>`;
+//     const timestamp = new Date().toLocaleString();
+//     const callItem = document.createElement('div');
+//     callItem.classList.add('call-item');
+//     callItem.innerHTML = `<strong>${name}</strong> (${number})<br><small>${timestamp}</small>`;
     
-    callList.prepend(callItem);
-    document.getElementById('name').value = '';
-    document.getElementById('number').value = '';
-}
+//     callList.prepend(callItem);
+//     document.getElementById('name').value = '';
+//     document.getElementById('number').value = '';
+// }
 
-function searchCalls() {
-    const filter = document.getElementById('search').value.toLowerCase();
-    const callItems = document.getElementsByClassName('call-item');
+// function searchCalls() {
+//     const filter = document.getElementById('search').value.toLowerCase();
+//     const callItems = document.getElementsByClassName('call-item');
     
-    for (let item of callItems) {
-        const text = item.textContent.toLowerCase();
-        item.style.display = text.includes(filter) ? '' : 'none';
-    }
-}
-  
+//     for (let item of callItems) {
+//         const text = item.textContent.toLowerCase();
+//         item.style.display = text.includes(filter) ? '' : 'none';
+//     }
+// }
+
+// BigInt
+const x = BigInt(Number.MAX_SAFE_INTEGER); // 9007199254740991n
+x + 1n === x + 2n; // false because 9007199254740992n and 9007199254740993n are unequal
+
+// Number
+Number.MAX_SAFE_INTEGER + 1 === Number.MAX_SAFE_INTEGER + 2; // true because both are 9007199254740992
 
 
 
