@@ -85,6 +85,18 @@ x + 1n === x + 2n; // false because 9007199254740992n and 9007199254740993n are 
 // Number
 Number.MAX_SAFE_INTEGER + 1 === Number.MAX_SAFE_INTEGER + 2; // true because both are 9007199254740992
 
+var compose = function(functions) {
+    return function(x) {
+        return functions.reduceRight((acc, fn) => fn(acc), x);
+    };
+};
+
+
+console.log(compose([x => x + 1, x => x * x, x => 2 * x])(4)); // Output: 65
+console.log(compose([x => 10 * x, x => 10 * x, x => 10 * x])(1)); // Output: 1000
+console.log(compose([])(42)); // Output: 42
+
+
 
 
 
