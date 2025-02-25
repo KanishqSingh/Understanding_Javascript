@@ -30,12 +30,53 @@
 //     }
 // });
 
-var addTwoPromises = function(promise1, promise2) {
-    return Promise.all([promise1, promise2]).then(values => values[0] + values[1]);
-};
+// var addTwoPromises = function(promise1, promise2) {
+//     return Promise.all([promise1, promise2]).then(values => values[0] + values[1]);
+// };
 
 
-addTwoPromises(
-    new Promise(resolve => setTimeout(() => resolve(2), 20)), 
-    new Promise(resolve => setTimeout(() => resolve(5), 60))
-).then(console.log);
+// addTwoPromises(
+//     new Promise(resolve => setTimeout(() => resolve(2), 20)), 
+//     new Promise(resolve => setTimeout(() => resolve(5), 60))
+// ).then(console.log);
+
+// var memoize = function(fn) {
+//     const cache = new Map();
+//     let callCount = 0;
+
+//     const getKey = (...args) => JSON.stringify(args); 
+
+//     const memoizedFunction = (...args) => {
+//         const key = getKey(...args);
+//         if (cache.has(key)) {
+//             return cache.get(key);
+//         }
+//         callCount++;
+//         const result = fn(...args);
+//         cache.set(key, result);
+//         return result;
+//     };
+
+//     memoizedFunction.getCallCount = () => callCount;
+
+//     return memoizedFunction;
+// };
+
+
+// const sum = (a, b) => a + b;
+// const memoizedSum = memoize(sum);
+
+// console.log(memoizedSum(2, 2)); 
+// console.log(memoizedSum(2, 2)); 
+// console.log(memoizedSum.getCallCount()); 
+
+// console.log(memoizedSum(1, 2)); 
+// console.log(memoizedSum.getCallCount()); 
+
+// const factorial = (n) => (n <= 1 ? 1 : n * factorial(n - 1));
+// const memoFactorial = memoize(factorial);
+
+// console.log(memoFactorial(3)); 
+// console.log(memoFactorial(2)); 
+// console.log(memoFactorial.getCallCount()); 
+
