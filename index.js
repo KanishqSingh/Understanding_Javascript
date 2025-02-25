@@ -96,6 +96,51 @@ console.log(compose([x => x + 1, x => x * x, x => 2 * x])(4)); // Output: 65
 console.log(compose([x => 10 * x, x => 10 * x, x => 10 * x])(1)); // Output: 1000
 console.log(compose([])(42)); // Output: 42
 
+var promiseAll = function(functions) {
+    return new Promise((resolve, reject) => {
+        let results = new Array(functions.length);
+        let completed = 0;
+        let hasRejected = false;
+
+        functions.forEach((fn, index) => {
+            fn()
+                .then(value => {
+                    if (hasRejected) return; // Ignore if already rejected
+                    results[index] = value;
+                    completed++;
+                    if (completed === functions.length) {
+                        resolve(results);
+                    }
+                })
+                .catch(error => {
+                    if (!hasRejected) {
+                        hasRejected = true;
+                        reject(error);
+                    }
+                });
+        });
+
+        if (functions.length === 0) {
+            resolve([]);
+        }
+    });
+};
+
+
+promiseAll([
+    () => new Promise(resolve => setTimeout(() => resolve(5), 200))
+]).then(console.log).catch(console.error); // [5]
+
+promiseAll([
+    () => new Promise(resolve => setTimeout(() => resolve(1), 200)), 
+    () => new Promise((resolve, reject) => setTimeout(() => reject("Error"), 100))
+]).then(console.log).catch(console.error); // "Error"
+
+promiseAll([
+    () => new Promise(resolve => setTimeout(() => resolve(4), 50)), 
+    () => new Promise(resolve => setTimeout(() => resolve(10), 150)), 
+    () => new Promise(resolve => setTimeout(() => resolve(16), 100))
+]).then(console.log).catch(console.error); // [4, 10, 16]
 
 
 
