@@ -80,3 +80,10 @@
 // console.log(memoFactorial(2)); 
 // console.log(memoFactorial.getCallCount()); 
 
+// const message = () => {
+//     const name = "Jesse";
+//     const age = 40;
+//     return name + ' is ' + age + 'years old.';
+//     };
+    
+//     export default message;
