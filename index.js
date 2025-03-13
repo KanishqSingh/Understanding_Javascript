@@ -238,3 +238,38 @@ const testCases = [
 ];
 
 console.log(maxRentalMonths(t, testCases));
+
+function isPrime(n) {
+    if (n < 2) return false;
+    if (n === 2 || n === 3) return true;
+    if (n % 2 === 0 || n % 3 === 0) return false;
+    
+    for (let i = 5; i * i <= n; i += 6) {
+        if (n % i === 0 || n % (i + 2) === 0) return false;
+    }
+    
+    return true;
+}
+
+function processInput(input) {
+    const lines = input.trim().split("\n");
+    const T = parseInt(lines[0], 10);
+    let result = [];
+
+    for (let i = 1; i <= T; i++) {
+        const N = parseInt(lines[i], 10);
+        result.push(isPrime(N) ? "yes" : "no");
+    }
+
+    console.log(result.join("\n"));
+}
+
+// Example usage:
+const input = `5
+23
+13
+20
+1000
+99991`;
+
+processInput(input);
