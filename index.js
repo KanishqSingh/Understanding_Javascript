@@ -172,3 +172,26 @@ function lengthOfLongestSubstring(s) {
 console.log(lengthOfLongestSubstring("abcabcbb")); 
 console.log(lengthOfLongestSubstring("bbbbb"));   
 console.log(lengthOfLongestSubstring("pwwkew"));   
+
+function maxBags(t, testCases) {
+    let results = [];
+    
+    for (let i = 0; i < t; i++) {
+        let [x, y] = testCases[i];
+        let totalCoins = x * y;
+        let bags = Math.floor(totalCoins / 100);
+        results.push(bags);
+    }
+    
+    return results;
+}
+
+// Example usage
+const t = 3;
+const testCases = [
+    [10, 10],
+    [20, 4],
+    [70, 7]
+];
+
+console.log(maxBags(t, testCases));
