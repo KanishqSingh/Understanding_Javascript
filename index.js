@@ -216,3 +216,25 @@ const n = 3;
 const weapons = [2, 3, 4];
 
 console.log(isArmyReady(n, weapons));
+
+
+function maxRentalMonths(t, testCases) {
+    let results = [];
+    
+    for (let i = 0; i < t; i++) {
+        let [x, y] = testCases[i];
+        let months = Math.floor((y - 1) / x);
+        results.push(months);
+    }
+    
+    return results;
+}
+
+// Example usage
+const t = 2;
+const testCases = [
+    [5, 12],
+    [5, 5]
+];
+
+console.log(maxRentalMonths(t, testCases));
