@@ -195,3 +195,24 @@ const testCases = [
 ];
 
 console.log(maxBags(t, testCases));
+
+function isArmyReady(n, weapons) {
+    let evenCount = 0;
+    let oddCount = 0;
+    
+    for (let i = 0; i < n; i++) {
+        if (weapons[i] % 2 === 0) {
+            evenCount++;
+        } else {
+            oddCount++;
+        }
+    }
+    
+    return evenCount > oddCount ? "READY FOR BATTLE" : "NOT READY";
+}
+
+// Example usage
+const n = 3;
+const weapons = [2, 3, 4];
+
+console.log(isArmyReady(n, weapons));
