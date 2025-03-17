@@ -87,7 +87,7 @@
         }
     </style>
 </head>
-<body>
+<!-- <body>
 
     <input type="text" id="search" placeholder="Search...">
     <ul id="list">
@@ -113,7 +113,51 @@
                 }
             });
         });
+    </script> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto-Complete Search</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+        input { width: 300px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; }
+        .suggestions { list-style: none; padding: 0; width: 300px; margin: 10px auto 0; }
+        .suggestions li { padding: 10px; border: 1px solid #ddd; cursor: pointer; }
+        .suggestions li:hover { background-color: #f0f0f0; }
+    </style>
+</head>
+<body>
+
+    <input type="text" id="search" placeholder="Type to search...">
+    <ul id="suggestions" class="suggestions"></ul>
+
+    <script>
+        const data = ["Apple", "Banana", "Orange", "Mango", "Grapes", "Pineapple", "Strawberry"];
+        const searchInput = document.getElementById("search");
+        const suggestionsList = document.getElementById("suggestions");
+
+        searchInput.addEventListener("input", function () {
+            const searchText = searchInput.value.toLowerCase();
+            suggestionsList.innerHTML = "";
+            if (!searchText) return;
+
+            data.filter(item => item.toLowerCase().includes(searchText))
+                .forEach(match => {
+                    const li = document.createElement("li");
+                    li.textContent = match;
+                    li.addEventListener("click", () => {
+                        searchInput.value = match;
+                        suggestionsList.innerHTML = "";
+                    });
+                    suggestionsList.appendChild(li);
+                });
+        });
     </script>
+
+
 
 
 
