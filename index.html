@@ -49,6 +49,74 @@
 
     <script src="index.js"></script>
     <script src="style.js"></script>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Bar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+        input {
+            width: 300px;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            width: 300px;
+        }
+        li {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 5px;
+            display: none; /* Initially hidden */
+        }
+        li.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <input type="text" id="search" placeholder="Search...">
+    <ul id="list">
+        <li>Apple</li>
+        <li>Banana</li>
+        <li>Orange</li>
+        <li>Mango</li>
+        <li>Pineapple</li>
+    </ul>
+
+    <script>
+        const searchInput = document.getElementById("search");
+        const listItems = document.querySelectorAll("#list li");
+
+        searchInput.addEventListener("input", function () {
+            const searchText = searchInput.value.toLowerCase();
+            listItems.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                if (text.includes(searchText)) {
+                    item.classList.add("show");
+                } else {
+                    item.classList.remove("show");
+                }
+            });
+        });
+    </script>
+
+
+
     
 </body>
 </html>
