@@ -98,3 +98,48 @@
 //   }
   
 //   myCalculator(5, 5, myDisplayer);
+
+class EventEmitter {
+    constructor() {
+        this.events = new Map();
+    }
+
+    subscribe(event, callback) {
+        if (!this.events.has(event)) {
+            this.events.set(event, []);
+        }
+        this.events.get(event).push(callback);
+
+        return {
+            unsubscribe: () => {
+                const callbacks = this.events.get(event);
+                if (callbacks) {
+                    this.events.set(event, callbacks.filter(cb => cb !== callback));
+                }
+            }
+        };
+    }
+
+    emit(event, args = []) {
+        if (!this.events.has(event)) {
+            return [];
+        }
+        return this.events.get(event).map(callback => callback(...args));
+    }
+}
+
+// Example usage:
+const emitter = new EventEmitter();
+
+// Subscribe to an event
+const sub1 = emitter.subscribe("firstEvent", x => x + 1);
+const sub2 = emitter.subscribe("firstEvent", x => x + 2);
+
+// Emit the event
+console.log(emitter.emit("firstEvent", [5])); // Output: [6, 7]
+
+// Unsubscribe the first event
+sub1.unsubscribe();
+
+// Emit the event again
+console.log(emitter.emit("firstEvent", [5])); // Output: [7]
