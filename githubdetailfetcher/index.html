@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="username" placeholder="Enter username">
+    <button onclick="ShowGitData()">Show Data</button>
+
+    <div id="result"></div>
+
+    <script>
+        async function ShowGitData() {
+            const user = document.getElementById('username').value;
+            const result = document.getElementById('result');
+
+            result.innerHTML = 'loading profile.....'
+
+            try {
+
+                const res = await fetch(`https://api.github.com/users/${user}`)
+
+                const data = await res.json();
+                console.log(data);
+
+                result.innerHTML = ` <img src="${data.avatar_url}" alt="${data.login}'s avatar">
+                    <h3>${data.name || data.login}</h3>
+                    <p><strong>Bio:</strong> ${data.bio || "Not available"}</p>
+                    <p><strong>Followers:</strong> ${data.followers}</p>
+                    <p><strong>Public Repos:</strong> ${data.public_repos}</p>
+                    <a href="${data.html_url}" target="_blank">View Profile on GitHub</a>
+        `;
+
+
+            } catch (error) {
+                console.log(error);
+
+
+            }
+
+        }
+    </script>
+</body>
+
+</html>
